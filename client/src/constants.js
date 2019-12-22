@@ -10,6 +10,8 @@ export const LOGOUT = "LOGOUT";
 
 export const RESET_ERRORS = "RESET_ERRORS";
 
+export const RESET_ERROR = "RESET_ERROR";
+
 export const CREATE_FORUM = "CREATE_FORUM";
 export const CREATE_FORUM_COMPLETE = "CREATE_FORUM_COMPLETE";
 export const CREATE_FORUM_ERROR = "CREATE_FORUM_ERROR";

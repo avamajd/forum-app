@@ -26,6 +26,7 @@ function App() {
       <div className="container">
         <StylesProvider jss={jss}>
           <ThemeProvider theme={theme}>
+
             <Header />
 
             <Switch>

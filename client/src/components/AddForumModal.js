@@ -86,12 +86,6 @@ const AddForumModal = (props) => {
             type="text"
             dir="rtl"
           />
-          {/* {validationMsg.email !== "" ? (
-            <div className="validation-msg">
-              <span>{validationMsg.email}</span>
-            </div>
-          ) : null} */}
-
           {
             !Validator.isEmpty(errorForum) ?
               <div className="error-msg">

@@ -1,6 +1,7 @@
 import {
   GET_FORUM_DISCUSSONS, GET_FORUM_DISCUSSONS_COMPLETE, GET_FORUM_DISCUSSONS_ERROR,
-  CREATE_DISCUSSON, CREATE_DISCUSSON_COMPLETE, CREATE_DISCUSSON_ERROR
+  CREATE_DISCUSSON, CREATE_DISCUSSON_COMPLETE, CREATE_DISCUSSON_ERROR,
+  RESET_ERROR
 } from "../constants";
 
 const initialState = {
@@ -17,6 +18,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isFetching: true,
+        createSuccess: false,
+        error: ""
       };
 
     case GET_FORUM_DISCUSSONS_COMPLETE:
@@ -38,6 +41,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isFetching: true,
+        createSuccess: false,
+        error: ""
       };
 
     case CREATE_DISCUSSON_COMPLETE:
@@ -56,29 +61,13 @@ export default function (state = initialState, action) {
         createSuccess: false
       }
 
-    // //******************************************
+    case RESET_ERROR:
+      return {
+        ...state,
+        error: ""
+      };
 
-    // case DELETE_FORUM:
-    //   return {
-    //     ...state,
-    //     isFetching: true,
-    //     error: "",
-    //     deleteSuccess: false
-    //   };
-    // case DELETE_FORUM_COMPLETE:
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     // discussions: action.discussions,
-    //     deleteSuccess: true
-    //   };
-    // case DELETE_FORUM_ERROR:
-    //   return {
-    //     ...state,
-    //     isFetching: false,
-    //     error: action.error,
-    //     deleteSuccess: false
-    //   }
+    //******************************************
 
     default:
       return state;

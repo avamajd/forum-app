@@ -22,9 +22,12 @@ const Header = (props) => {
       <div className="row no-gutters">
         <div className="col-12">
 
-          <div>
+          {props.isAuthenticated ?
 
-            {props.isAuthenticated ?
+            <div className="auth-part">
+              <span className="p-3">
+                {props.name} خوش آمدید
+                </span>
               <Button
                 variant="outlined"
                 color="secondary"
@@ -33,9 +36,9 @@ const Header = (props) => {
               >
                 خروج
               </Button>
-              : null
-            }
-          </div>
+            </div>
+            : null
+          }
 
         </div>
       </div>
@@ -45,6 +48,7 @@ const Header = (props) => {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
+  name: state.auth.name,
 });
 
 export default compose(withRouter, connect(mapStateToProps, { logout }))(Header);

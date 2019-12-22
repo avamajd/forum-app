@@ -1,11 +1,10 @@
 import { takeEvery, call, put } from "redux-saga/effects";
 import { LOGIN, LOGIN_COMPLETE, LOGIN_ERROR, REGISTER, REGISTER_COMPLETE, REGISTER_ERROR } from "../constants";
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
 
 const baseUrl = "http://localhost:5000/api/users";
 
 function loginRequest(email, password) {
-  console.log("req", email, password)
   let uri = `${baseUrl}/login`;
 
   return fetch(uri, {
@@ -28,13 +27,13 @@ function* loginUser(action) {
     let { email, password } = action;
     const response = yield call(loginRequest, email, password);
     const result = yield response.json();
-    console.log("here", result)
 
     if (result.errors && Object.keys(result.errors).length !== 0) {
       errors = result.errors;
       yield put({ type: LOGIN_ERROR, errors });
     } else {
-      yield put({ type: LOGIN_COMPLETE, token: result.token });
+      const decoded = yield jwt_decode(result.token);
+      yield put({ type: LOGIN_COMPLETE, token: result.token, name: decoded.name });
     }
   } catch (err) {
     yield put({ type: LOGIN_ERROR, errors: err });
@@ -66,7 +65,6 @@ function* registerUser(action) {
     let { name, email, password } = action;
     const response = yield call(registerRequest, name, email, password);
     const result = yield response.json();
-    console.log("here", result)
 
     if (result.errors && Object.keys(result.errors).length !== 0) {
       errors = result.errors;

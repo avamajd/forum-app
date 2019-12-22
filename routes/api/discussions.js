@@ -5,6 +5,8 @@ const passport = require("passport");
 const Forum = require("../../models/Forum");
 const Discussion = require("../../models/Discussion");
 
+const isEmpty = require("../../validation/is-empty");
+
 //***********************************************
 
 // @route   GET api/discussions/forumId
@@ -20,7 +22,8 @@ router.get("/:forumId", (req, res) => {
         return res.status(404).json({ error });
       }
 
-      Forum.find({ _id: { $in: forum.discussions } })
+      Discussion.find({ _id: { $in: forum.discussions } })
+        // .populate("discussion", ["title", "content", "date"])
         .then(discussions => {
           res.json(discussions);
         })

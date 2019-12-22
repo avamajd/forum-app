@@ -1,4 +1,4 @@
-import { GET_FORUM_DISCUSSONS, CREATE_DISCUSSON } from "../constants";
+import { GET_FORUM_DISCUSSONS, CREATE_DISCUSSON, RESET_ERROR } from "../constants";
 
 export const getForumDiscussions = (forumId) => {
   return {
@@ -14,6 +14,13 @@ export const createDiscussion = (forumId, title, content, token) => {
     title,
     content,
     token
+  };
+};
+
+
+export const resetError = () => {
+  return {
+    type: RESET_ERROR,
   };
 };
 

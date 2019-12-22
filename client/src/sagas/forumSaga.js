@@ -9,7 +9,6 @@ import {
 const baseUrl = "http://localhost:5000/api/forums";
 
 function createForumRequest(title) {
-  console.log("createreq", title)
   let uri = `${baseUrl}/create`;
 
   return fetch(uri, {
@@ -30,7 +29,6 @@ function* addForum(action) {
     let { title } = action;
     const response = yield call(createForumRequest, title);
     const result = yield response.json();
-    console.log("here", result)
 
     if (result.error && Object.keys(result.error).length !== 0) {
       error = result.error.forum;
@@ -46,7 +44,6 @@ function* addForum(action) {
 /**********************************************************************/
 
 function deleteForumRequest(id) {
-  console.log("createreq", id)
   let uri = `${baseUrl}/${id}`;
 
   return fetch(uri, {
@@ -64,7 +61,6 @@ function* removeForum(action) {
     let { id } = action;
     const response = yield call(deleteForumRequest, id);
     const result = yield response.json();
-    console.log("here", result)
 
     if (result.error && Object.keys(result.error).length !== 0) {
       error = result.error.forum;
@@ -80,7 +76,6 @@ function* removeForum(action) {
 /**********************************************************************/
 
 function fetchFroums() {
-  console.log("createreq")
   let uri = `${baseUrl}/all`;
 
   return fetch(uri, {
@@ -97,7 +92,6 @@ function* getAllForumsData(action) {
   try {
     const response = yield call(fetchFroums);
     const result = yield response.json();
-    console.log("forumsData", result)
 
     if (result.error && Object.keys(result.error).length !== 0) {
       error = result.error.forum;

@@ -30,7 +30,6 @@ const LoginForm = props => {
   //*************************************
 
   useEffect(() => {
-    // todo: revision
     const { errors, regErrors } = props.auth;
 
     // for login:
@@ -60,6 +59,17 @@ const LoginForm = props => {
     setRegValidationMsg({ regName: "", regEmail: "", regPassword: "" });
     props.resetErrors()
   }, []);
+
+  //*************************************
+
+  useEffect(() => {
+
+    const { regEmail, regPassword } = regValues;
+
+    if (props.auth.registerSuccess) {
+      setValues({ email: regEmail, password: regPassword });
+    }
+  }, [props.auth.registerSuccess]);
 
   //*************************************
 
@@ -219,7 +229,7 @@ const LoginForm = props => {
           >
             <div>
               <TextField
-                error={regValidationMsg.regName !== ""}
+                error={!Validator.isEmpty(regValidationMsg.regName)}
                 name="regName"
                 value={regValues.regName}
                 onChange={regHandleChange}
@@ -227,7 +237,7 @@ const LoginForm = props => {
                 label="نام"
                 dir="rtl"
               />
-              {regValidationMsg.regName !== "" ? (
+              {!Validator.isEmpty(regValidationMsg.regName) ? (
                 <div className="validation-msg">
                   <span>{regValidationMsg.regName}</span>
                 </div>
@@ -236,7 +246,7 @@ const LoginForm = props => {
 
             <div>
               <TextField
-                error={regValidationMsg.regEmail !== ""}
+                error={!Validator.isEmpty(regValidationMsg.regEmail)}
                 name="regEmail"
                 value={regValues.regEmail}
                 onChange={regHandleChange}
@@ -244,7 +254,7 @@ const LoginForm = props => {
                 label="ایمیل"
                 dir="rtl"
               />
-              {regValidationMsg.regEmail !== "" ? (
+              {!Validator.isEmpty(regValidationMsg.regEmail) ? (
                 <div className="validation-msg">
                   <span>{regValidationMsg.regEmail}</span>
                 </div>
@@ -253,7 +263,7 @@ const LoginForm = props => {
 
             <div>
               <TextField
-                error={regValidationMsg.regPassword !== ""}
+                error={!Validator.isEmpty(regValidationMsg.regPassword)}
                 name="regPassword"
                 type="password"
                 value={regValues.regPassword}
@@ -262,7 +272,7 @@ const LoginForm = props => {
                 label="رمز عبور"
                 dir="rtl"
               />
-              {regValidationMsg.regPassword !== "" ? (
+              {!Validator.isEmpty(regValidationMsg.regPassword) ? (
                 <div className="validation-msg">
                   <span>{regValidationMsg.regPassword}</span>
                 </div>

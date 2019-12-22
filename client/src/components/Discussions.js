@@ -56,7 +56,10 @@ const Discussions = (props) => {
 
                 <div className="col-12" key={index}>
                   <div className="discussion-item" key={index}>
-                    <span className="pl-3">{item.title}</span>
+                    <span className="pl-4">{item.title}</span>
+                    <span className="pl-3">{item.date}</span>
+                    <span className="pl-3">{item.content}</span>
+
                     {/* <DeleteIcon className="delete-icon" onClick={() => handleDelete(item._id)} /> */}
                   </div>
 

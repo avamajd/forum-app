@@ -35,7 +35,8 @@ export const authReducer = function (state = initialState, action) {
         ...state,
         isFetching: false,
         isAuthenticated: true,
-        token: action.token
+        token: action.token,
+        name: action.name
       };
 
     case LOGIN_ERROR:

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
-import { createDiscussion } from "../actions/discussionActions";
+import { createDiscussion, resetError } from "../actions/discussionActions";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import Validator from "./Validator";
@@ -11,10 +11,10 @@ const CreateDiscussionForm = (props) => {
   const { match: { params } } = props;
 
   const [values, setValues] = useState({ title: "", content: "" });
+  const [validationMsg, setValidationMsg] = useState("");
 
   useEffect(() => {
     if (props.createSuccess) {
-      console.log("called", props.createSuccess)
 
       props.history.push(`/forum/${params.forumId}`);
     }
@@ -22,9 +22,24 @@ const CreateDiscussionForm = (props) => {
 
   //*************************************  
 
+  useEffect(() => {
+    if (!Validator.isEmpty(props.error)) {
+      setValidationMsg(props.error);
+    }
+  }, [props.error]);
+
+  //*************************************
+
+  useEffect(() => {
+    setValidationMsg("");
+    props.resetError()
+  }, []);
+
+  //*************************************
+
   const handleChange = e => {
     let { name, value } = e.target;
-
+    setValidationMsg("");
     setValues({ ...values, [name]: value });
   };
 
@@ -32,7 +47,7 @@ const CreateDiscussionForm = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // setValidationMsg("");
+    setValidationMsg("");
 
     props.createDiscussion(params.forumId, values.title.trim(), values.content.trim(), props.token);
   };
@@ -52,8 +67,13 @@ const CreateDiscussionForm = (props) => {
             dir="rtl"
           >
 
+            {validationMsg ? (
+              <div className="validation-msg">
+                <span>{validationMsg}</span>
+              </div>
+            ) : null}
             <TextField
-              // error={validationMsg !== ""}
+              error={validationMsg !== ""}
               variant="outlined"
               name="title"
               value={values.title}
@@ -62,17 +82,10 @@ const CreateDiscussionForm = (props) => {
               // required
               label="عنوان موضوع"
               dir="rtl"
-              className="col mt-4 mb-3 "
+              className="col mb-3"
             />
-            {/* 
-              {validationMsg ? (
-                <div className="validation-msg">
-                  <span>{validationMsg}</span>
-                </div>
-              ) : null} */}
 
             <TextField
-              // error={validationMsg !== ""}
               variant="outlined"
               name="content"
               value={values.content}
@@ -83,21 +96,15 @@ const CreateDiscussionForm = (props) => {
               dir="rtl"
               multiline
               rows={10}
-              className="col mt-4 mb-3"
-
+              className="col mb-4"
             />
-
-            {/* {validationMsg ? (
-                <div className="validation-msg">
-                  <span>{validationMsg}</span>
-                </div>
-              ) : null} */}
 
             <Button
               variant="outlined"
               color="primary"
               type="submit"
               value="Submit"
+              className="button"
             >
               ارسال موضوع
             </Button>
@@ -112,7 +119,8 @@ const CreateDiscussionForm = (props) => {
 
 const mapStateToProps = state => ({
   createSuccess: state.discussion.createSuccess,
+  error: state.discussion.error,
   token: state.auth.token,
 });
 
-export default connect(mapStateToProps, { createDiscussion })(CreateDiscussionForm);
+export default connect(mapStateToProps, { createDiscussion, resetError })(CreateDiscussionForm);

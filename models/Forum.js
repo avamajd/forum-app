@@ -17,21 +17,21 @@ const ForumSchema = new Schema({
   ]
 });
 
-// ForumSchema.pre("remove", async function(next) {
-//   try {
-//     Promise.all([
-//       await Discussion.find({ _id: { $in: this.discussions } }).then(discussions => {
-//         discussions.forEach(discussion => {
-//           discussion.remove();
-//         });
-//       }),
-//       await Discussion.deleteMany({ _id: { $in: this.discussions } })
-//     ]);
+ForumSchema.pre("remove", async function (next) {
+  try {
+    Promise.all([
+      await Discussion.find({ _id: { $in: this.discussions } }).then(discussions => {
+        discussions.forEach(discussion => {
+          discussion.remove();
+        });
+      }),
+      await Discussion.deleteMany({ _id: { $in: this.discussions } })
+    ]);
 
-//     next();
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = Forum = mongoose.model("forum", ForumSchema);
