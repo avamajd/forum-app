@@ -1,0 +1,28 @@
+.login-form {
+  // .field {
+  //   display: flex;
+  //   width: 20px;
+
+  //   height: 30px;
+  // }
+
+  .validation-msg {
+    // display: flex;
+    font-size: 14px;
+    color: red;
+    padding: 5px;
+  }
+
+  .submit-button{
+    margin-top: 20px;
+
+    .register-button{
+      background-color: #0ab327;
+      box-shadow: none;
+    }
+
+    .login-button{
+      box-shadow: none;      
+    }
+  }
+}

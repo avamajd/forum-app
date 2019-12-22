@@ -1,0 +1,30 @@
+@import "var.scss";
+
+// *,
+// *::before,
+// *::after {
+//   box-sizing: border-box !important;
+//   font-family: $main-font-family;
+// }
+
+body {
+  text-align: center;
+  font-family: $main-font-family;
+  margin: 0;
+  // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  //   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  //   sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: rtl;
+}
+
+.fa-num,
+.fa-num * {
+  font-family: $main-font-family-fa !important;
+}
+
+// code {
+//   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+//     monospace;
+// }

@@ -1,0 +1,54 @@
+.add-forum-modal {
+  margin: 24px;
+
+  .add-forum-modal-header {
+    display: flex;
+    flex-direction: column;
+
+    .add-forum-modal-header-text {
+      display: flex;
+      justify-content: space-between;
+      // margin-bottom: 22px;
+
+      .modal-title {
+        font-size: 16px;
+        color: #231f20;
+      }
+    }
+    .modal-text {
+      font-size: 14px;
+      color: #231f20;
+      text-align: center;
+      padding: 16px 0 8px 0;
+    }
+
+    .modal-close-icon {
+      cursor: pointer;
+      color:#907d7d
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px !important;
+   
+    .confirm-button{
+      background-color:#0690a7;
+      box-shadow: none;
+    }
+
+    .cancel-button{
+      box-shadow: none;
+    }
+  }
+
+  .error-msg{
+    color:red;
+  }
+
+  .custom-input > div {
+    border-radius: 6px;
+    height: 46px;
+  }
+}

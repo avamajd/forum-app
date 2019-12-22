@@ -1,0 +1,42 @@
+.discussions {
+   
+    .no-item{
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 10px;
+      color: #555;
+    }
+  
+    .discussion-table{
+      display: flex;    
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      justify-content: center;
+  
+        .discussion-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 20px 26px;
+    
+          // .delete-icon{
+          //   cursor: pointer;
+          //   color: #6d7e97;
+          // }
+      }
+    }
+  
+    .add-button {
+      display: flex;
+      justify-content: flex-end;
+      margin: 10px 0 20px 0;
+  
+      .button {
+        background-color: #0690a7;
+        border-radius: 6px;
+        color: #fafafa;
+        box-shadow: none;
+      }
+    }
+  }
+  

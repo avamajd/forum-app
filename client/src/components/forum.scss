@@ -1,0 +1,60 @@
+.forum {
+
+  // .add-modal{
+  //   overflow: hidden;
+  //   height: auto;
+  // }
+
+  .no-item{
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    color: #555;
+  }
+
+  .forum-table{
+    display: flex;    
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    justify-content: center;
+
+      .forum-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 26px;
+    
+        .forum-link{
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          color: #076488;//808285
+        }
+
+        .delete-icon{
+          cursor: pointer;
+          color: #6d7e97;
+        }
+    }
+
+    
+  
+    // .divider {
+    //   margin-left: 10px;
+    //   margin-right: 10px;
+    // }
+  }
+
+  .add-button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0 20px 0;
+
+    .button {
+      background-color: #0690a7;
+      border-radius: 6px;
+      color: #fafafa;
+      box-shadow: none;
+    }
+  }
+}
